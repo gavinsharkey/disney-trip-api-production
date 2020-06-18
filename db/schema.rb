@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_17_013350) do
+ActiveRecord::Schema.define(version: 2020_06_18_200834) do
 
   create_table "attractions", force: :cascade do |t|
     t.string "name"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_06_17_013350) do
   end
 
   create_table "days", force: :cascade do |t|
-    t.string "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "trip_id"
@@ -41,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_06_17_013350) do
     t.integer "reservable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "time"
     t.index ["day_id"], name: "index_reservations_on_day_id"
     t.index ["reservable_type", "reservable_id"], name: "index_reservations_on_reservable_type_and_reservable_id"
   end
