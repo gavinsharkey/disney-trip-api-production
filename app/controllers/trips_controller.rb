@@ -9,10 +9,7 @@ class TripsController < ApplicationController
 
   # GET /trips/1
   def show
-    render json: @trip, include: { days: {
-      include: {
-        reservations: { include: [:reservable] }
-    }}}
+    render json: @trip, include: { days: {include: {reservations: { include: {reservable: {except: [:created_at, :updated_at]}}, except: [:created_at, :updated_at]}}, except: [:created_at, :updated_at]}}, except: [:created_at, :updated_at]
   end
 
   # POST /trips
