@@ -17,9 +17,9 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
 
     if @trip.save
-      render json: @trip, status: :created, location: @trip
+      render json: @trip, include: :days, except: [:created_at, :updated_at]
     else
-      render json: @trip.errors
+      render json: { errors: @trip.errors.full_messages }
     end
   end
 
