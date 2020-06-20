@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     resources :days, only: [:index, :create]
   end
 
-  resources :days, only: [:show, :update, :destroy] do
-    resources :reservations, only: [:create, :update, :destroy]
-  end
+  resources :days, only: [:show, :update, :destroy]
+
+  resources :reservations, only: [:create, :update, :destroy]
 
   resources :resorts, only: [:index] do
     resources :restaurants, only: [:index]
