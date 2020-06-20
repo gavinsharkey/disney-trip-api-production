@@ -8,6 +8,12 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def destroy
+    reservation = Reservation.find_by(id: params[:id])
+    reservation.destroy
+    render json: reservation, include: [:reservable]
+  end
+
   private
 
   def reservation_params
