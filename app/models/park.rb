@@ -1,4 +1,4 @@
 class Park < ApplicationRecord
-  has_many :attractions
-  has_many :restaurants
+  has_many :attractions, dependent: :destroy
+  has_many :restaurants, dependent: :destroy
 end
