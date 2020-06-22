@@ -19,7 +19,7 @@ class TripsController < ApplicationController
     if @trip.save
       render json: @trip, include: :days, except: [:created_at, :updated_at]
     else
-      render json: { errors: @trip.errors.full_messages }
+      render json: { errors: @trip.errors.full_messages.to_sentence }
     end
   end
 
@@ -28,7 +28,7 @@ class TripsController < ApplicationController
     if @trip.update(trip_params)
       render json: @trip
     else
-      render json: @trip.errors
+      render json: {errors: @trip.errors.full_messages.to_sentence}
     end
   end
 
