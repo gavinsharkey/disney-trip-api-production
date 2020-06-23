@@ -1,4 +1,10 @@
 class ReservationsController < ApplicationController
+  def index
+    day = Day.find_by(id: params[:day_id])
+    reservations = day.reservations
+    render json: reservations, include: {reservable: { only: [:name] } }, except: [:created_at, :updated_at]
+  end
+
   def create
     reservation = Reservation.new(reservation_params)
     if reservation.save
