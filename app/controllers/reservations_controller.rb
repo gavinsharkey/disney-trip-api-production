@@ -14,6 +14,15 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def update
+    reservation = Reservation.find_by(id: params[:id])
+    if reservation.update(reservation_params)
+      render json: reservation, include: {reservable: { only: [:name] } }, except: [:created_at, :updated_at]
+    else
+      render json: {errors: reservation.errors.full_messages.to_sentence}
+    end
+  end
+
   def destroy
     reservation = Reservation.find_by(id: params[:id])
     reservation.destroy
