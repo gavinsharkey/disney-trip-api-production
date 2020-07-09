@@ -18,7 +18,6 @@ class DaysController < ApplicationController
   end
 
   def show
-    
     render json: @day, include: {reservations: { include: {reservable: {except: [:created_at, :updated_at]}}, except: [:created_at, :updated_at]}}, except: [:created_at, :updated_at], methods: [:place]
   end
 
